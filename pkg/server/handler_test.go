@@ -66,8 +66,8 @@ func Test_echoRequest(t *testing.T) {
 		},
 		{
 			name:    "Alphnumeric characters from client",
-			args:    args{in: &api.EchoMessage{Message: "abcAA332$%()"}},
-			want:    &api.EchoMessage{Message: "abcAA332$%()"},
+			args:    args{in: &api.EchoMessage{Message: "abcAA332#*&332"}},
+			want:    &api.EchoMessage{Message: "abcAA332#*&332"},
 			wantErr: false,
 		},
 		{
