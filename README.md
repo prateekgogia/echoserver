@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/prateekgogia/echoserver.svg?branch=master)](https://travis-ci.com/prateekgogia/echoserver)
+[![GoDoc](https://godoc.org/github.com/prateekgogia/echoserver/pkg/server?status.svg)](https://godoc.org/github.com/prateekgogia/echoserver/pkg/server)
+
 # echoserver
 
 Simple gRPC based echoserver, which returns a string containing whatever the client sends in the request.
