@@ -18,10 +18,12 @@ RUN protoc -I api/ -I${GOPATH}/src --go_out=plugins=grpc:api api/api.proto && \
     go build -v -o bin/server github.com/prateekgogia/echoserver/cmd/server && \
     go build -v -o bin/client github.com/prateekgogia/echoserver/cmd/client && \
     mv bin/server /usr/bin/ && \
-    mv bin/client /usr/bin/
+    mv bin/client /usr/bin/ && mkdir cert && scripts/generate_certs.sh && \
+    mv cert /usr/local/include/
 
 FROM ubuntu:latest
 
 COPY --from=builder /usr/bin/server /bin/server
 COPY --from=builder /usr/bin/client /bin/client
 COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
+COPY --from=builder /usr/local/include/cert /usr/local/include/cert

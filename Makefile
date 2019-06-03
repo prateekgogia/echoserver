@@ -17,3 +17,7 @@ integration-test: build
 
 .PHONY: test
 test: go-test integration-test
+
+.PHONY: run-server
+run-server: build
+	docker run -d --rm --name=server echoserver /bin/server

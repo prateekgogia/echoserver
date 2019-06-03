@@ -10,6 +10,7 @@ import (
 )
 
 var (
+	host = "localhost"
 	port = flag.Int("port", 8080, "gRPC server port")
 )
 
@@ -20,7 +21,7 @@ func main() {
 	// handle interrupt and shutdown the server
 	go handleInterrupt(serv)
 	// start server, blocking call
-	if err := serv.Run(*port); err != nil {
+	if err := serv.Run(host, *port); err != nil {
 		log.Fatalf("failed to start gRPC server err %v", err)
 	}
 }

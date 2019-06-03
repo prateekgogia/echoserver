@@ -8,6 +8,12 @@ import (
 	"github.com/prateekgogia/echoserver/api"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
+)
+
+var (
+	serverCertFile = "/usr/local/include/cert/server.crt"
+	serverKeyFile  = "/usr/local/include/cert/server.key"
 )
 
 // Server represents the gRPC server
@@ -22,14 +28,19 @@ func New() *Server {
 }
 
 // Run starts the server functionality
-func (s *Server) Run(port int) error {
+func (s *Server) Run(host string, port int) error {
 	// create a net listener
 	var err error
-	if s.listener, err = startListener(port); err != nil {
+	if s.listener, err = startListener(host, port); err != nil {
 		return err
 	}
+	// Create the TLS credentials
+	creds, err := credentials.NewServerTLSFromFile(serverCertFile, serverKeyFile)
+	if err != nil {
+		return fmt.Errorf("could not load TLS keys: %s", err)
+	}
 	// create a gRPC server object
-	s.grpcServer = grpc.NewServer()
+	s.grpcServer = grpc.NewServer([]grpc.ServerOption{grpc.Creds(creds)}...)
 
 	// attach the Echo service to the server
 	api.RegisterEchoServer(s.grpcServer, s)
@@ -45,8 +56,8 @@ func (s *Server) Stop() error {
 	return stopListener(s.listener)
 }
 
-func startListener(port int) (net.Listener, error) {
-	l, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
+func startListener(host string, port int) (net.Listener, error) {
+	l, err := net.Listen("tcp", fmt.Sprintf("%s:%d", host, port))
 	if err != nil {
 		return nil, fmt.Errorf("failed to listen: %v", err)
 	}
