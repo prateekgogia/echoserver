@@ -9,7 +9,7 @@ to the Dockerfile.
 
 To build gRPC server run the following command
 ```
-    make build
+make build
 ```
 
 This command will generate a Docker image called echoserver, this image contains
@@ -42,15 +42,15 @@ make test
 ### Server mode
 
 ```
-    root@ubuntu:/# docker run -ti --rm --name=server echoserver /bin/server
-    2019/06/03 04:45:40 Receive message hi
+root@ubuntu:/# docker run -ti --rm --name=server echoserver /bin/server
+2019/06/03 04:45:40 Receive message hi
 ```
 
 ### test client mode
 
 ```
-    root@ubuntu:/# docker run --rm --net=container:server echoserver /bin/client -msg=hi
-    2019/06/03 04:45:40 Response from server: hi
+root@ubuntu:/# docker run --rm --net=container:server echoserver /bin/client -msg=hi
+2019/06/03 04:45:40 Response from server: hi
 ```
 
 ## Config flags
@@ -92,5 +92,10 @@ unzip protoc-3.8.0-linux-x86_64.zip -d /tmp/ && mv /tmp/bin/protoc /usr/bin/
 ```
 go get -u github.com/golang/protobuf/protoc-gen-go
 ```
-
 Note: Make sure $PATH on the host contains $GOPATH/bin, else do `export PATH=$PATH:$GOPATH/bin/`
+
+Once, you have both protoc and protoc-gen-go installed, run the following command to generate server and client stub package in api/api.pb.go
+
+```
+protoc -I api/ -I${GOPATH}/src --go_out=plugins=grpc:api api/api.proto
+```

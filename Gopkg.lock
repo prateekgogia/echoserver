@@ -15,12 +15,6 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/prateekgogia/echoServer"
-  packages = ["api"]
-  revision = "ec195d9cfd32a24056abeed9622a2b8f86000e01"
-
-[[projects]]
-  branch = "master"
   name = "golang.org/x/net"
   packages = [
     "context",
@@ -110,6 +104,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "d5660740cef1001927ec907ab33fa7a00a5e01f899c8ec167b9e0b6faa4fb903"
+  inputs-digest = "2076096af92838788bcb78494e1f4b26e411b9afb566f0cee96d18bd08636a02"
   solver-name = "gps-cdcl"
   solver-version = 1
