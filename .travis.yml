@@ -1,0 +1,16 @@
+language: go
+
+go:
+  - 1.x
+
+service:
+  - docker
+
+sudo: required
+
+jobs:
+  include:
+    - stage: Run complete tests
+      script: make test
+    - stage: Build
+      script: make build
