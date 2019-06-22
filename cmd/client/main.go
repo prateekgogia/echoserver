@@ -1,13 +1,14 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/prateekgogia/echoserver/api"
 
-	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 )
@@ -27,15 +28,18 @@ func main() {
 	if err != nil {
 		log.Fatalf("could not load tls cert: %s", err)
 	}
-	conn, err = grpc.Dial(fmt.Sprintf("%s:%d", host, *port),
+	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+	defer cancel()
+	conn, err = grpc.DialContext(ctx, fmt.Sprintf("%s:%d", host, *port),
 		grpc.WithTransportCredentials(creds))
 	if err != nil {
 		log.Fatalf("did not connect: %s", err)
 	}
 	defer conn.Close()
 	c := api.NewEchoClient(conn)
-	response, err := c.EchoRequest(context.Background(),
-		&api.EchoMessage{Message: *msg})
+	ctx, cancelReq := context.WithTimeout(context.Background(), 1*time.Second)
+	defer cancelReq()
+	response, err := c.EchoRequest(ctx, &api.EchoMessage{Message: *msg})
 	if err != nil {
 		log.Fatalf("Error when calling EchoRequest: %s", err)
 	}

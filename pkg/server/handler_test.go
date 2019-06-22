@@ -22,7 +22,7 @@ func TestServer_EchoRequest(t *testing.T) {
 	}{
 		{
 			name:    "Test public API in package",
-			args:    args{in: &api.EchoMessage{Message: "Hello"}},
+			args:    args{context.TODO(), &api.EchoMessage{Message: "Hello"}},
 			want:    &api.EchoMessage{Message: "Hello"},
 			wantErr: false,
 		},
