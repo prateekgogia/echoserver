@@ -9,3 +9,15 @@ message echoMessage {
 service Echo {
   rpc EchoRequest(echoMessage) returns (echoMessage) {}
 }
+
+service StatusStream {
+  rpc Status(request) returns (stream statusResponse) {}
+}
+
+message request {
+  
+}
+
+message statusResponse {
+  string message = 1;
+}
