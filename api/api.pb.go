@@ -63,30 +63,106 @@ func (m *EchoMessage) GetMessage() string {
 	return ""
 }
 
+type Request struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Request) Reset()         { *m = Request{} }
+func (m *Request) String() string { return proto.CompactTextString(m) }
+func (*Request) ProtoMessage()    {}
+func (*Request) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00212fb1f9d3bf1c, []int{1}
+}
+
+func (m *Request) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Request.Unmarshal(m, b)
+}
+func (m *Request) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Request.Marshal(b, m, deterministic)
+}
+func (m *Request) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Request.Merge(m, src)
+}
+func (m *Request) XXX_Size() int {
+	return xxx_messageInfo_Request.Size(m)
+}
+func (m *Request) XXX_DiscardUnknown() {
+	xxx_messageInfo_Request.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Request proto.InternalMessageInfo
+
+type StatusResponse struct {
+	Message              string   `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *StatusResponse) Reset()         { *m = StatusResponse{} }
+func (m *StatusResponse) String() string { return proto.CompactTextString(m) }
+func (*StatusResponse) ProtoMessage()    {}
+func (*StatusResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00212fb1f9d3bf1c, []int{2}
+}
+
+func (m *StatusResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_StatusResponse.Unmarshal(m, b)
+}
+func (m *StatusResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_StatusResponse.Marshal(b, m, deterministic)
+}
+func (m *StatusResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StatusResponse.Merge(m, src)
+}
+func (m *StatusResponse) XXX_Size() int {
+	return xxx_messageInfo_StatusResponse.Size(m)
+}
+func (m *StatusResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_StatusResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_StatusResponse proto.InternalMessageInfo
+
+func (m *StatusResponse) GetMessage() string {
+	if m != nil {
+		return m.Message
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*EchoMessage)(nil), "api.echoMessage")
+	proto.RegisterType((*Request)(nil), "api.request")
+	proto.RegisterType((*StatusResponse)(nil), "api.statusResponse")
 }
 
 func init() { proto.RegisterFile("api.proto", fileDescriptor_00212fb1f9d3bf1c) }
 
 var fileDescriptor_00212fb1f9d3bf1c = []byte{
-	// 109 bytes of a gzipped FileDescriptorProto
+	// 171 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4c, 0x2c, 0xc8, 0xd4,
 	0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4e, 0x2c, 0xc8, 0x54, 0x52, 0xe7, 0xe2, 0x4e, 0x4d,
 	0xce, 0xc8, 0xf7, 0x4d, 0x2d, 0x2e, 0x4e, 0x4c, 0x4f, 0x15, 0x92, 0xe0, 0x62, 0xcf, 0x85, 0x30,
-	0x25, 0x18, 0x15, 0x18, 0x35, 0x38, 0x83, 0x60, 0x5c, 0x23, 0x6b, 0x2e, 0x16, 0xd7, 0xe4, 0x8c,
-	0x7c, 0x21, 0x63, 0x2e, 0x6e, 0x10, 0x1d, 0x94, 0x5a, 0x58, 0x9a, 0x5a, 0x5c, 0x22, 0x24, 0xa0,
-	0x07, 0x32, 0x10, 0xc9, 0x08, 0x29, 0x0c, 0x11, 0x25, 0x86, 0x24, 0x36, 0xb0, 0x8d, 0xc6, 0x80,
-	0x00, 0x00, 0x00, 0xff, 0xff, 0xa5, 0xb0, 0x1c, 0xb9, 0x7e, 0x00, 0x00, 0x00,
+	0x25, 0x18, 0x15, 0x18, 0x35, 0x38, 0x83, 0x60, 0x5c, 0x25, 0x4e, 0x2e, 0xf6, 0xa2, 0xd4, 0xc2,
+	0xd2, 0xd4, 0xe2, 0x12, 0x25, 0x2d, 0x2e, 0xbe, 0xe2, 0x92, 0xc4, 0x92, 0xd2, 0xe2, 0xa0, 0xd4,
+	0xe2, 0x82, 0xfc, 0xbc, 0x62, 0x3c, 0xda, 0x8c, 0xac, 0xb9, 0x58, 0x5c, 0x93, 0x33, 0xf2, 0x85,
+	0x8c, 0xb9, 0xb8, 0x41, 0x74, 0x10, 0xc4, 0x08, 0x21, 0x01, 0x3d, 0x90, 0x3b, 0x90, 0x6c, 0x96,
+	0xc2, 0x10, 0x51, 0x62, 0x30, 0xb2, 0xe7, 0xe2, 0x09, 0x06, 0x5b, 0x14, 0x5c, 0x52, 0x94, 0x9a,
+	0x98, 0x2b, 0xa4, 0xcf, 0xc5, 0x06, 0xe1, 0x0b, 0xf1, 0x80, 0x55, 0x43, 0x1d, 0x24, 0x25, 0x0c,
+	0xe6, 0xa1, 0xba, 0x49, 0x89, 0xc1, 0x80, 0x31, 0x89, 0x0d, 0xec, 0x53, 0x63, 0x40, 0x00, 0x00,
+	0x00, 0xff, 0xff, 0x97, 0x4a, 0xf4, 0x54, 0xf6, 0x00, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConn
+var _ grpc.ClientConnInterface
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
+const _ = grpc.SupportPackageIsVersion6
 
 // EchoClient is the client API for Echo service.
 //
@@ -96,10 +172,10 @@ type EchoClient interface {
 }
 
 type echoClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewEchoClient(cc *grpc.ClientConn) EchoClient {
+func NewEchoClient(cc grpc.ClientConnInterface) EchoClient {
 	return &echoClient{cc}
 }
 
@@ -157,5 +233,104 @@ var _Echo_serviceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
+	Metadata: "api.proto",
+}
+
+// StatusStreamClient is the client API for StatusStream service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type StatusStreamClient interface {
+	Status(ctx context.Context, in *Request, opts ...grpc.CallOption) (StatusStream_StatusClient, error)
+}
+
+type statusStreamClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewStatusStreamClient(cc grpc.ClientConnInterface) StatusStreamClient {
+	return &statusStreamClient{cc}
+}
+
+func (c *statusStreamClient) Status(ctx context.Context, in *Request, opts ...grpc.CallOption) (StatusStream_StatusClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_StatusStream_serviceDesc.Streams[0], "/api.StatusStream/Status", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &statusStreamStatusClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type StatusStream_StatusClient interface {
+	Recv() (*StatusResponse, error)
+	grpc.ClientStream
+}
+
+type statusStreamStatusClient struct {
+	grpc.ClientStream
+}
+
+func (x *statusStreamStatusClient) Recv() (*StatusResponse, error) {
+	m := new(StatusResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+// StatusStreamServer is the server API for StatusStream service.
+type StatusStreamServer interface {
+	Status(*Request, StatusStream_StatusServer) error
+}
+
+// UnimplementedStatusStreamServer can be embedded to have forward compatible implementations.
+type UnimplementedStatusStreamServer struct {
+}
+
+func (*UnimplementedStatusStreamServer) Status(req *Request, srv StatusStream_StatusServer) error {
+	return status.Errorf(codes.Unimplemented, "method Status not implemented")
+}
+
+func RegisterStatusStreamServer(s *grpc.Server, srv StatusStreamServer) {
+	s.RegisterService(&_StatusStream_serviceDesc, srv)
+}
+
+func _StatusStream_Status_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Request)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(StatusStreamServer).Status(m, &statusStreamStatusServer{stream})
+}
+
+type StatusStream_StatusServer interface {
+	Send(*StatusResponse) error
+	grpc.ServerStream
+}
+
+type statusStreamStatusServer struct {
+	grpc.ServerStream
+}
+
+func (x *statusStreamStatusServer) Send(m *StatusResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+var _StatusStream_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.StatusStream",
+	HandlerType: (*StatusStreamServer)(nil),
+	Methods:     []grpc.MethodDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Status",
+			Handler:       _StatusStream_Status_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "api.proto",
 }
