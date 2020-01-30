@@ -16,7 +16,7 @@ make build
 ```
 
 This command will generate a Docker image called echoserver, this image contains
-both a server and test client library to test the server.
+both the server and the test client library to test the server.
 
 ## Usage
 
