@@ -14,7 +14,7 @@ COPY . /workspace/golang/src/github.com/prateekgogia/echoserver/
 
 WORKDIR /workspace/golang/src/github.com/prateekgogia/echoserver
 
-RUN protoc -I api/ -I${GOPATH}/src --go_out=plugins=grpc:api api/api.proto && \
+RUN protoc -I api/ -I${GOPATH}/src --go_out=plugins=grpc:api api/graph.proto && \
     go build -v -o bin/server github.com/prateekgogia/echoserver/cmd/server && \
     go build -v -o bin/client github.com/prateekgogia/echoserver/cmd/client && \
     mv bin/server /usr/bin/ && \

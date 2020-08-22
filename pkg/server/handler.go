@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	"github.com/prateekgogia/echoserver/api"
@@ -25,6 +26,11 @@ func (s *Server) EchoRequest(ctx context.Context, in *api.EchoMessage) (*api.Ech
 	}
 }
 
+func (s *Server) CreateGraph(ctx context.Context, graph *api.GraphObject) (*api.CreateGraphResponse, error) {
+	fmt.Println("graph ", graph)
+	return &api.CreateGraphResponse{GraphID: 1}, nil
+
+}
 func echoRequest(in *api.EchoMessage) (*api.EchoMessage, error) {
 	log.Printf("Receive message %s", in.Message)
 	return &api.EchoMessage{Message: in.Message}, nil

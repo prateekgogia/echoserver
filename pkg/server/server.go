@@ -8,7 +8,6 @@ import (
 	"github.com/prateekgogia/echoserver/api"
 
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 )
 
 var (
@@ -20,6 +19,7 @@ var (
 type Server struct {
 	listener   net.Listener
 	grpcServer *grpc.Server
+	//
 }
 
 // New creates a server
@@ -35,15 +35,16 @@ func (s *Server) Run(host string, port int) error {
 		return err
 	}
 	// Create the TLS credentials
-	creds, err := credentials.NewServerTLSFromFile(serverCertFile, serverKeyFile)
-	if err != nil {
-		return fmt.Errorf("could not load TLS keys: %s", err)
-	}
+	// creds, err := credentials.NewServerTLSFromFile(serverCertFile, serverKeyFile)
+	// if err != nil {
+	// 	return fmt.Errorf("could not load TLS keys: %s", err)
+	// }
 	// create a gRPC server object
-	s.grpcServer = grpc.NewServer([]grpc.ServerOption{grpc.Creds(creds)}...)
+	// s.grpcServer = grpc.NewServer([]grpc.ServerOption{grpc.Creds(creds)}...)
+	s.grpcServer = grpc.NewServer()
 
 	// attach the Echo service to the server
-	api.RegisterEchoServer(s.grpcServer, s)
+	api.RegisterGraphRequestServer(s.grpcServer, s)
 
 	// start the server, blocking call
 	return s.grpcServer.Serve(s.listener)

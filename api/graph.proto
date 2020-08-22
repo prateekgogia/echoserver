@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package api;
+
+
+service GraphRequest {
+  rpc CreateGraph(GraphObject) returns (CreateGraphResponse) {}
+}
+
+message GraphObject {
+  map<int32, Neighbors> adjacencyList = 1;
+}
+
+message Neighbors {
+  repeated int32 nodes = 1;
+}
+
+message CreateGraphResponse {
+  int32 graphID = 1;
+}
