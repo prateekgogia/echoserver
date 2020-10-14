@@ -28,7 +28,9 @@ func (s *Server) EchoRequest(ctx context.Context, in *api.EchoMessage) (*api.Ech
 
 func (s *Server) CreateGraph(ctx context.Context, graph *api.GraphObject) (*api.CreateGraphResponse, error) {
 	fmt.Println("graph ", graph)
-	return &api.CreateGraphResponse{GraphID: 1}, nil
+	count := len(s.graphs)
+	s.graphs[count+1] = graph
+	return &api.CreateGraphResponse{GraphID: count + 1}, nil
 
 }
 func echoRequest(in *api.EchoMessage) (*api.EchoMessage, error) {
